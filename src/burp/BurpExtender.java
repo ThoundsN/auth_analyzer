@@ -35,6 +35,7 @@ public class BurpExtender implements IBurpExtender, ITab, IExtensionStateListene
 		callbacks.printOutput("Created by Simon Reinhart");
 		callbacks.printOutput("Protect7 GmbH");
 		callbacks.printOutput("www.protect7.com");
+		callbacks.printOutput("modified");
 	}
 
 	@Override

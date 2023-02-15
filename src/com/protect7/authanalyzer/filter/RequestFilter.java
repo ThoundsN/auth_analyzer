@@ -1,6 +1,8 @@
 package com.protect7.authanalyzer.filter;
 
 import java.awt.Color;
+
+import burp.IHttpRequestResponse;
 import com.protect7.authanalyzer.gui.util.HintCheckBox;
 import com.protect7.authanalyzer.util.GenericHelper;
 import burp.IBurpExtenderCallbacks;
@@ -46,6 +48,10 @@ public abstract class RequestFilter {
 	public abstract boolean filterRequest(IBurpExtenderCallbacks callbacks, int toolFlag, IRequestInfo requestInfo, IResponseInfo responseInfo);
 
 	public abstract boolean hasStringLiterals();
+
+
+	public abstract boolean filterBody(IBurpExtenderCallbacks callbacks, int toolFlag, IHttpRequestResponse messageInfo);
+
 	
 	public String[] getFilterStringLiterals() {
 		return stringLiterals;
@@ -102,3 +108,5 @@ public abstract class RequestFilter {
 		return description;
 	}
 }
+
+

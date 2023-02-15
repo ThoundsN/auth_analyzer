@@ -43,6 +43,11 @@ public class HttpListener implements IHttpListener, IProxyListener {
 		}
 		for(int i=0; i<config.getRequestFilterList().size(); i++) {
 			RequestFilter filter = config.getRequestFilterAt(i);
+			if(i == config.getRequestFilterList().size()){
+				if(filter.filterBody(BurpExtender.callbacks, toolFlag, messageInfo)) {
+					return true;
+				}
+			}
 			if(filter.filterRequest(BurpExtender.callbacks, toolFlag, requestInfo, responseInfo)) {
 				return true;
 			}

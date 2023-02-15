@@ -22,22 +22,22 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 public class HintCheckBox extends JPanel {
-	
+
 	private static final long serialVersionUID = -1192483759892519805L;
 	private final JCheckBox checkBox;
 	private final JDialog dialog = new JDialog();
 	private final JLabel textLabel = new JLabel();
-	
+
 	public HintCheckBox(String text) {
 		checkBox = new JCheckBox(text);
 		setup("");
 	}
-	
+
 	public HintCheckBox(String text, String hint) {
 		checkBox = new JCheckBox(text);
 		setup(hint);
 	}
-	
+
 	public HintCheckBox(String text, boolean selected, String hint) {
 		checkBox = new JCheckBox(text, selected);
 		setup(hint);
@@ -52,7 +52,7 @@ public class HintCheckBox extends JPanel {
 		ImageIcon hintIcon = new ImageIcon(HintCheckBox.class.getClassLoader().getResource("info_icon.png"));
 		JLabel iconLabel = new JLabel(hintIcon);
 		add(iconLabel);
-		dialog.setUndecorated(true); 
+		dialog.setUndecorated(true);
 		setHint(hint);
 		textLabel.setBorder(BorderFactory.createCompoundBorder(new LineBorder(Color.LIGHT_GRAY, 1, true), new EmptyBorder(3, 3, 3, 3)));
 		dialog.add(textLabel);
@@ -87,28 +87,28 @@ public class HintCheckBox extends JPanel {
 			}
 		});
 	}
-	
+
 	public void setHint(String hint) {
 		textLabel.setText(hint);
 		textLabel.putClientProperty("html.disable", null);
 	}
-	
+
 	public void addActionListener(ActionListener l) {
 		checkBox.addActionListener(l);
 	}
-	
+
 	public String getText() {
 		return checkBox.getText();
 	}
-	
+
 	public void setText(String text) {
 		checkBox.setText(text);
 	}
-	
+
 	public boolean isSelected() {
 		return checkBox.isSelected();
 	}
-	
+
 	public void setSelected(boolean selected) {
 		checkBox.setSelected(selected);
 	}

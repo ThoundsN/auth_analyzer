@@ -1,6 +1,7 @@
 package com.protect7.authanalyzer.filter;
 
 import burp.IBurpExtenderCallbacks;
+import burp.IHttpRequestResponse;
 import burp.IRequestInfo;
 import burp.IResponseInfo;
 
@@ -28,5 +29,10 @@ public class StatusCodeFilter extends RequestFilter {
 	@Override
 	public boolean hasStringLiterals() {
 		return true;
+	}
+
+	@Override
+	public boolean filterBody(IBurpExtenderCallbacks callbacks, int toolFlag, IHttpRequestResponse messageInfo) {
+		return false;
 	}
 }

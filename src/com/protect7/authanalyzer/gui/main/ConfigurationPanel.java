@@ -37,14 +37,7 @@ import com.protect7.authanalyzer.entities.Session;
 import com.protect7.authanalyzer.entities.Token;
 import com.protect7.authanalyzer.entities.TokenBuilder;
 import com.protect7.authanalyzer.entities.TokenLocation;
-import com.protect7.authanalyzer.filter.FileTypeFilter;
-import com.protect7.authanalyzer.filter.InScopeFilter;
-import com.protect7.authanalyzer.filter.MethodFilter;
-import com.protect7.authanalyzer.filter.OnlyProxyFilter;
-import com.protect7.authanalyzer.filter.PathFilter;
-import com.protect7.authanalyzer.filter.QueryFilter;
-import com.protect7.authanalyzer.filter.RequestFilter;
-import com.protect7.authanalyzer.filter.StatusCodeFilter;
+import com.protect7.authanalyzer.filter.*;
 import com.protect7.authanalyzer.gui.dialog.SettingsDialog;
 import com.protect7.authanalyzer.gui.entity.SessionPanel;
 import com.protect7.authanalyzer.gui.entity.TokenPanel;
@@ -184,6 +177,17 @@ public class ConfigurationPanel extends JPanel {
 				queryFilterButton,
 				"Enter string literals for queries to be excluded. Comma separated.\r\neg: log, core");
 		filterPanel.add(queryFilterButton);
+
+		HintCheckBox bodyFilterButton = new HintCheckBox("Exclude string in request body");
+		queryFilterButton.setSelected(false);
+		addFilter(
+				new BodyFilter(filterPanel.getComponentCount(),
+						"Excludes request body that contains one of the specified string literals"),
+				bodyFilterButton,
+				"Enter string literals for request body to be excluded. Comma separated.\r\neg: log, core");
+		filterPanel.add(bodyFilterButton);
+
+
 		startStopButton.putClientProperty("html.disable", null);
 		startStopButton.setText(ANALYZER_STOPPED_TEXT);
 		startStopButton.addActionListener(new ActionListener() {

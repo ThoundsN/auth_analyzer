@@ -1,6 +1,7 @@
 package com.protect7.authanalyzer.filter;
 
 import burp.IBurpExtenderCallbacks;
+import burp.IHttpRequestResponse;
 import burp.IRequestInfo;
 import burp.IResponseInfo;
 
@@ -24,7 +25,13 @@ public class PathFilter extends RequestFilter {
 		}
 		return false;
 	}
-	
+
+	@Override
+	public boolean filterBody(IBurpExtenderCallbacks callbacks, int toolFlag, IHttpRequestResponse messageInfo) {
+		return false;
+	}
+
+
 	@Override
 	public boolean hasStringLiterals() {
 		return true;
