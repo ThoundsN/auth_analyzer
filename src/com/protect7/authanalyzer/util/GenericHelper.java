@@ -104,4 +104,19 @@ public class GenericHelper {
 		}
 		return arrayAsString;
 	}
+
+
+	public static String getArrayAsText(String[] array) {
+		String arrayAsString = "";
+		if (array != null) {
+			for (String arrayPart : array) {
+				if (arrayAsString.equals("")) {
+					arrayAsString = arrayPart;
+				} else {
+					arrayAsString += "\n" + arrayPart;
+				}
+			}
+		}
+		return arrayAsString;
+	}
 }

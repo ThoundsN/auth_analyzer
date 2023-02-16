@@ -14,14 +14,7 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JToggleButton;
+import javax.swing.*;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import com.google.gson.Gson;
@@ -480,7 +473,7 @@ public class ConfigurationPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (onOffButton.isSelected() && filter.hasStringLiterals()) {
 					String[] inputArray = getInputArray(onOffButton, inputDialogText,
-							GenericHelper.getArrayAsString(filter.getFilterStringLiterals()));
+							GenericHelper.getArrayAsText(filter.getFilterStringLiterals()));
 					if (inputArray != null) {
 						filter.setFilterStringLiterals(inputArray);
 					}
@@ -740,15 +733,25 @@ public class ConfigurationPanel extends JPanel {
 	}
 
 	private String[] getInputArray(Component parentFrame, String message, String value) {
-		String userInput = JOptionPane.showInputDialog(parentFrame, message, value);
+		JTextArea textArea = new JTextArea(10, 30);
+		textArea.setText(value);
+		JScrollPane scrollPane = new JScrollPane(textArea);
+		int option = JOptionPane.showConfirmDialog(parentFrame, scrollPane, message, JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+		String userInput = null;
+		if (option == JOptionPane.OK_OPTION) {
+			userInput = textArea.getText();
+		}
+//		String userInput = JOptionPane.showInputDialog(parentFrame, message, value);
 		if (userInput == null) {
 			return null;
 		}
-		String[] userInputParts = userInput.split(",");
+		String[] userInputParts = userInput.split("\n");
 		String[] inputs = new String[userInputParts.length];
 		for (int i = 0; i < inputs.length; i++) {
 			inputs[i] = userInputParts[i].trim();
 		}
+
 		return inputs;
 	}
 }
