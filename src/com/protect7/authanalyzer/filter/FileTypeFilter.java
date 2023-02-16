@@ -12,7 +12,12 @@ public class FileTypeFilter extends RequestFilter {
 		super(filterIndex, description);
 		setFilterStringLiterals(new String[]{"js", "script", "css", "png", "jpg", "jpeg", "gif", "svg", "bmp", "woff", "ico"});
 	}
-	
+
+	@Override
+	public Type getType() {
+		return null;
+	}
+
 	@Override
 	public boolean filterRequest(IBurpExtenderCallbacks callbacks, int toolFlag, IRequestInfo requestInfo, IResponseInfo responseInfo) {		
 		if(onOffButton.isSelected()) {

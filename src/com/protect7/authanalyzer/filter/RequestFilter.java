@@ -10,18 +10,34 @@ import burp.IRequestInfo;
 import burp.IResponseInfo;
 
 public abstract class RequestFilter {
+
+	public enum Type{
+		body
+	}
+
 	
 	protected HintCheckBox onOffButton = null;
 	protected int amountOfFilteredRequests = 0;
 	protected String[] stringLiterals = null;
 	private final int filterIndex;
 	private final String description;
+
+	private final Type type;
 	
 	public RequestFilter(int filterIndex, String description) {
 		this.filterIndex = filterIndex;
 		this.description = description;
+		type = null;
 	}
-	
+
+	public RequestFilter(int filterIndex, String description,Type type) {
+		this.filterIndex = filterIndex;
+		this.description = description;
+		this.type = type;
+	}
+
+	public abstract Type getType();
+
 	public void registerOnOffButton(HintCheckBox button) {
 		onOffButton = button;
 		onOffButton.putClientProperty("html.disable", null);

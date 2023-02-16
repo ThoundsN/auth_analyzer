@@ -31,6 +31,10 @@ public class PathFilter extends RequestFilter {
 		return false;
 	}
 
+	public Type getType() {
+		return null;
+	}
+
 
 	@Override
 	public boolean hasStringLiterals() {

@@ -31,6 +31,12 @@ public class StatusCodeFilter extends RequestFilter {
 		return true;
 	}
 
+
+	public Type getType() {
+		return null;
+	}
+
+
 	@Override
 	public boolean filterBody(IBurpExtenderCallbacks callbacks, int toolFlag, IHttpRequestResponse messageInfo) {
 		return false;

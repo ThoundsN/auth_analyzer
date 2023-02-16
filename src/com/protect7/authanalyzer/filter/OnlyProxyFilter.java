@@ -35,6 +35,11 @@ public class OnlyProxyFilter extends RequestFilter {
 		return false;
 	}
 
+	public Type getType() {
+		return null;
+	}
+
+
 	@Override
 	public boolean hasStringLiterals() {
 		return false;

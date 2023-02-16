@@ -25,6 +25,10 @@ public class InScopeFilter extends RequestFilter {
 		return false;
 	}
 
+	public Type getType() {
+		return null;
+	}
+
 	@Override
 	public boolean hasStringLiterals() {
 		return false;
